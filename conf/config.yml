@@ -260,7 +260,20 @@ logger:
 
 # Authentication
 auth:
-  - type: none
+  - type: http
+    options:
+      # 用于验证 JWT 的 HTTP 服务 URL
+      endpointUrl: "http://localhost:3300/validate-jwt"
+      # 如果 HTTP 响应返回以下状态码之一，则认为身份验证成功
+      permittedStatusCodes: [200]
+      # 如果 HTTP 请求超时（单位：毫秒），则拒绝连接
+      requestTimeout: 3000
+      # 是否从传入的登录数据中提升特定字段为请求头
+      promoteToHeader:
+        - token
+      retryStatusCodes: [404, 504]  # 在这些状态码时会重试请求
+      retryAttempts: 3
+      retryInterval: 5000
 
   # # reading users and passwords from the storage layer
   # - type: storage

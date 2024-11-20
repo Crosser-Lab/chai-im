@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "@deepstream/protobuf": "^1.0.8",
+    "@deepstream/server": "file:",
     "@deepstream/types": "^2.3.2",
     "ajv": "^6.12.6",
     "better-ajv-errors": "^1.2.0",
